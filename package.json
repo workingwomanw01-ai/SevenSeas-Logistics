@@ -1,0 +1,34 @@
+{
+  "name": "logistics",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^5.0.3",
+    "dotenv": "^16.5.0",
+    "firebase": "^11.10.0",
+    "firebase-admin": "^13.4.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.1",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.513.0",
+    "mapbox-gl": "^3.12.0",
+    "next": "15.3.3",
+    "nodemailer": "^7.0.3",
+    "notyf": "^3.10.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-leaflet": "^5.0.0",
+    "sharp": "^0.34.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4"
+  }
+}
