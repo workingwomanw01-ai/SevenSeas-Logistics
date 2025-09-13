@@ -21,13 +21,13 @@ export const metadata = {
   openGraph: {
     title: "SevenSeas Logistics - Professional Shipping & Transport Solutions",
     description: "SevenSeas Logistics: 96+ years of experience providing reliable freight and transport solutions globally.",
-    url: "https://certifiedfreightlogistic.com/", // Update if you have a new domain
+    url: "https://sevenseaslogistic.com/", // Update if you have a new domain
     siteName: "SevenSeas Logistics",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "https://certifiedfreightlogistic.com/images/Elite-optimized.png",
+        url: "https://sevenseaslogistic.com/images/cel1.png",
         width: 1200,
         height: 630,
         alt: "SevenSeas Logistics - Professional Transport Solutions",
@@ -40,7 +40,7 @@ export const metadata = {
     site: "@sevenseaslogistics", // Update if you have a new handle
     title: "SevenSeas Logistics - Professional Shipping & Transport Solutions", 
     description: "SevenSeas Logistics: 96+ years of reliable freight experience.",
-    images: ["https://certifiedfreightlogistic.com/images/Elite-optimized.png"],
+    images: ["https://sevenseaslogistic.com/images/cel1.png"],
   },
   robots: "index, follow",
   viewport: "width=device-width, initial-scale=1",
