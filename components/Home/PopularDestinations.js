@@ -221,28 +221,32 @@ export default function PopularDestinations() {
 			<div className="max-w-6xl mx-auto px-4">
 				<div className="mb-10">
 					<h2
-						className="text-3xl md:text-4xl font-bold mb-4 text-center"
+						className="text-2xl md:text-4xl font-bold mb-4 text-center"
 						style={{ color: "#bfa14a" }}
 					>
 						Popular destinations our shipping company covers
 					</h2>
-					<div className="text-lg text-gray-700 w-full leading-relaxed text-center">
-						<p>
-							We ship boxes, baggage and other household items to countless international destinations using our extensive network of depots. And, when you choose Seven Seas Worldwide, you can rest easy knowing we'll handle the whole process, including customs clearance and safe delivery.
+					<div className="text-base md:text-lg text-gray-700 w-full leading-relaxed text-center">
+						<p className="mx-auto max-w-xs md:max-w-none">
+							We ship boxes, baggage and other household items to countless
+							international destinations using our extensive network of depots.
+							And, when you choose Seven Seas Worldwide, you can rest easy
+							knowing we'll handle the whole process, including customs clearance
+							and safe delivery.
 						</p>
-						<p className="mt-2 font-medium">
+						<p className="mt-2 font-medium mx-auto max-w-xs md:max-w-none">
 							Here are a few of the most popular countries we cover:
 						</p>
 					</div>
 				</div>
-				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-12 gap-y-10 justify-items-center">
+				<div className="grid grid-cols-3 md:grid-cols-5 gap-x-6 gap-y-8 justify-items-center">
 					{destinations.map((dest) => (
 						<div
 							key={dest.name}
 							className="flex flex-col items-center"
-							style={{ height: 120 }}
+							style={{ height: 110 }}
 						>
-							<div className="rounded-full overflow-hidden shadow w-24 h-24 mb-3 relative">
+							<div className="rounded-full overflow-hidden shadow w-16 h-16 md:w-24 md:h-24 mb-2 md:mb-3 relative">
 								<img
 									src={`https://flagcdn.com/w160/${dest.code}.png`}
 									srcSet={`
@@ -255,7 +259,7 @@ export default function PopularDestinations() {
 								/>
 							</div>
 							<p
-								className="text-lg underline font-semibold"
+								className="text-base md:text-lg underline font-semibold whitespace-nowrap"
 								style={{ color: "#800020" }}
 							>
 								{dest.name}
