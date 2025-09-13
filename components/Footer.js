@@ -66,7 +66,8 @@ export default function Footer() {
       {/* Main Footer Content */}
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">            {/* Company Info */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Company Info */}
             <div className="space-y-6">
               <div className="flex items-center space-x-2">
                 <div className=" p-3 rounded-lg">
@@ -103,39 +104,42 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Services */}
-            <div className="space-y-6">
-              <h3 className="text-xl font-bold text-white">Our Services</h3>
-              <ul className="space-y-3">
-                {services.map((service) => (
-                  <li key={service.name}>
-                    <Link
-                      href={service.href}
-                      className="text-gray-300 hover-gold-text transition-colors duration-200 flex items-center space-x-2"
-                    >
-                      <ArrowRight className="w-4 h-4" />
-                      <span>{service.name}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>            </div>
-
-            {/* Careers */}
-            <div className="space-y-6">
-              <h3 className="text-xl font-bold text-white">Careers</h3>
-              <ul className="space-y-3">
-                {careers.map((career) => (
-                  <li key={career.name}>
-                    <Link
-                      href={career.href}
-                      className="text-gray-300 hover-gold-text transition-colors duration-200 flex items-center space-x-2"
-                    >
-                      <ArrowRight className="w-4 h-4" />
-                      <span>{career.name}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            {/* Services & Careers side by side on mobile */}
+            <div className="grid grid-cols-2 gap-6">
+              {/* Services */}
+              <div className="space-y-6">
+                <h3 className="text-xl font-bold text-white">Our Services</h3>
+                <ul className="space-y-3">
+                  {services.map((service) => (
+                    <li key={service.name}>
+                      <Link
+                        href={service.href}
+                        className="text-gray-300 hover-gold-text transition-colors duration-200 flex items-center space-x-2"
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                        <span>{service.name}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {/* Careers */}
+              <div className="space-y-6">
+                <h3 className="text-xl font-bold text-white">Careers</h3>
+                <ul className="space-y-3">
+                  {careers.map((career) => (
+                    <li key={career.name}>
+                      <Link
+                        href={career.href}
+                        className="text-gray-300 hover-gold-text transition-colors duration-200 flex items-center space-x-2"
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                        <span>{career.name}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             {/* Quick Links */}
@@ -155,19 +159,18 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
-
             {/* Contact Info */}
             <div className="space-y-6">
               <h3 className="text-xl font-bold text-white">Contact Info</h3>
               <div className="space-y-4">                <div className="flex items-start space-x-3">
-                  <MapPin className="w-5 h-5 text-gold-secondary mt-1 flex-shrink-0" />
+                  {/* <MapPin className="w-5 h-5 text-gold-secondary mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-gray-300">
                       1344 White Ct<br />
                       Santa Maria, CA 93458<br />
                       United States
                     </p>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="flex items-center space-x-3">
