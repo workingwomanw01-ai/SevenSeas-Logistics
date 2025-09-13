@@ -321,7 +321,7 @@ export default function InvoiceGenerator() {
       
       pdf.setFontSize(10);
       pdf.text('Professional Shipping Solutions', 105, 47, { align: 'center' });
-      pdf.text('info@certifiedfreightlogistic.com | +1 (209) 353-3619', 105, 52, { align: 'center' });
+      pdf.text('info@sevenseaslogistic.com | +1 (209) 353-3619', 105, 52, { align: 'center' });
 
       // Add line
       pdf.line(20, 60, 190, 60);
@@ -514,9 +514,9 @@ export default function InvoiceGenerator() {
                 </div>
             </div>
             <div style="text-align: right; font-size: 12px; color: #666;">
-                <p style="font-weight: bold; margin: 0;">Certified Freight Logistics</p>
+                <p style="font-weight: bold; margin: 0;">Seven Seas Logistics</p>
                 <p style="margin: 2px 0;">Professional Shipping Solutions</p>
-                <p style="margin: 2px 0;">info@certifiedfreightlogistic.com</p>
+                <p style="margin: 2px 0;">iinfo@sevenseaslogistic.com</p>
                 <p style="margin: 2px 0;">+1 (209) 353-3619</p>
             </div>
         </div>
@@ -589,9 +589,9 @@ export default function InvoiceGenerator() {
         ${invoiceData.notes ? `<div style="margin-top: 30px;"><strong>Notes:</strong><br>${invoiceData.notes}</div>` : ''}
         
         <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; font-size: 12px; color: #666;">
-            <p style="margin: 5px 0;"><strong>Certified Freight Logistics</strong> - Your trusted shipping partner</p>
+            <p style="margin: 5px 0;"><strong>Seven Seas Logistics</strong> - Your trusted shipping partner</p>
             <p style="margin: 5px 0;">Thank you for choosing our services!</p>
-            <p style="margin: 5px 0;">For questions about this invoice, contact us at info@certifiedfreightlogistic.com or +1 (209) 353-3619</p>
+            <p style="margin: 5px 0;">For questions about this invoice, contact us at info@sevenseaslogistic.com or +1 (209) 353-3619</p>
         </div>
     </body>
     </html>`;
@@ -762,9 +762,9 @@ export default function InvoiceGenerator() {
                   <h2 className="text-lg sm:text-xl text-gray-600">Certified Freight Logistics</h2>
                 </div>
               </div><div className="text-center sm:text-right text-sm text-gray-600">
-                <p className="font-semibold">Certified Freight Logistics</p>
+                <p className="font-semibold">Seven Seas Logistics</p>
                 <p>Professional Shipping Solutions</p>
-                <p>info@certifiedfreightlogistic.com</p>
+                <p>info@sevenseaslogistic.com</p>
                 <p>+1 (209) 353-3619</p>
               </div>
             </div><div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 mb-8">
@@ -842,7 +842,7 @@ export default function InvoiceGenerator() {
             <div className="mt-12 pt-6 border-t border-gray-300 text-center text-sm text-gray-600">
               <p className="font-semibold mb-2">Certified Freight Logistics - Your trusted shipping partner</p>
               <p className="mb-1">Thank you for choosing our services!</p>
-              <p>For questions about this invoice, contact us at info@certifiedfreightlogistic.com or +1 (209) 353-3619</p>
+              <p>For questions about this invoice, contact us at info@sevenseaslogistic.com or +1 (209) 353-3619</p>
             </div>
           </div>{/* Invoice Settings */}
           <div className="mt-6 p-4 bg-gray-50 rounded-lg no-print">

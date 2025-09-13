@@ -36,7 +36,7 @@ export default function ContactPage() {
       name: "Headquarters - Santa Maria",
       address: "1344 White Ct, Santa Maria, CA 93458, United States",
       phone: "+1 (209) 353-3619",
-      email: "info@certifiedfreightlogistic.com",
+      email: "info@sevenseaslogistic.com",
       hours: "Mon - Fri: 8:00 AM - 6:00 PM",
       type: "Headquarters"
     },
@@ -44,13 +44,13 @@ export default function ContactPage() {
       name: "Washington Office - Sumner",
       address: "4504 E Valley Hwy E, Sumner, Washington 98390, US",
       phone: "+1 (209) 353-3619",
-      email: "info@certifiedfreightlogistic.com", 
+      email: "info@sevenseaslogistic.com", 
       hours: "Mon - Fri: 7:00 AM - 5:00 PM",
       type: "Regional Office"    },{
       name: "European Office - London",
       address: "15 Canary Wharf, London E14 5JP, UK",
       phone: "+44 20 7123 4567",
-      email: "info@certifiedfreightlogistic.com",
+      email: "info@sevenseaslogistic.com",
       hours: "Mon - Fri: 9:00 AM - 6:00 PM GMT",
       type: "International Office"
     },
@@ -58,7 +58,7 @@ export default function ContactPage() {
       name: "Asia Pacific - Singapore",
       address: "1 Marina Boulevard, Singapore 018989",
       phone: "+65 6123 4567",
-      email: "info@certifiedfreightlogistic.com",
+      email: "info@sevenseaslogistic.com",
       hours: "Mon - Fri: 9:00 AM - 6:00 PM SGT",
       type: "Regional Hub"
     }
@@ -88,7 +88,7 @@ export default function ContactPage() {
       icon: Mail,
       title: "Email Us", 
       description: "Send us your detailed requirements",
-      contact: "info@certifiedfreightlogistic.com",
+      contact: "info@sevenseaslogistic.com",
       availability: "Response within 2 hours",
       color: "bg-green-500"
     },
@@ -400,7 +400,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-600">General Inquiries</p>
-                    <p className="font-semibold text-gray-900">info@certifiedfreightlogistic.com</p>
+                    <p className="font-semibold text-gray-900">info@sevenseaslogistic.com</p>
                   </div>
                 </div>
 

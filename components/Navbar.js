@@ -39,7 +39,7 @@ export default function Navbar() {
               <span className="whitespace-nowrap">+1 (209) 353-3619</span>
             </div>            <div className="flex items-center space-x-2 flex-shrink-0">
               <Mail className="w-4 h-4" />
-              <span className="whitespace-nowrap">info@certifiedfreightlogistic.com</span>
+              <span className="whitespace-nowrap">info@sevenseaslogistic.com</span>
             </div>
             {/* <div className="flex items-center space-x-2 flex-shrink-0 hidden 2xl:flex">
               <MapPin className="w-4 h-4" />

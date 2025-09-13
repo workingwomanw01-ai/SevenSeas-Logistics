@@ -81,7 +81,7 @@ const getProfessionalFooter = () => {
   const companyName = process.env.COMPANY_NAME || "Certified Freight Logistics";  const companyAddress = process.env.COMPANY_ADDRESS || "1344 White Ct";
   const companyCity = process.env.COMPANY_CITY || "Santa Maria, CA 93458";
   const companyCountry = process.env.COMPANY_COUNTRY || "United States";
-  const companyPhone = process.env.COMPANY_PHONE || "+1 (415) 758-0116";  const companyEmail = process.env.COMPANY_EMAIL || process.env.EMAIL_USER || "info@certifiedfreightlogistic.com";  const companyWebsite = process.env.COMPANY_WEBSITE || "www.certifiedfreightlogistic.com";
+  const companyPhone = process.env.COMPANY_PHONE || "+1 (415) 758-0116";  const companyEmail = process.env.COMPANY_EMAIL || process.env.EMAIL_USER || "info@sevenseaslogistic.com";  const companyWebsite = process.env.COMPANY_WEBSITE || "www.certifiedfreightlogistic.com";
   const companyLicense = process.env.COMPANY_LICENSE || "US DOT 1769376";
   
   // Social media links (configurable via environment variables)

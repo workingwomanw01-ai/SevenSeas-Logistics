@@ -14,7 +14,7 @@ COMPANY_ADDRESS="1344 White Ct"
 COMPANY_CITY="Santa Maria, CA 93458"
 COMPANY_COUNTRY="Country Name"
 COMPANY_PHONE="+1 (209) 353-3619"
-COMPANY_EMAIL="info@certifiedfreightlogistic.com"
+COMPANY_EMAIL="info@sevenseaslogistic.com"
 COMPANY_WEBSITE="www.certifiedfreightlogistic.com"
 COMPANY_LICENSE="DOT License #123456789"
 ```
@@ -84,7 +84,7 @@ The new email footer includes:
 ├─────────────────────────────────────────────────────────────┤
 │  Certified Freight Logistics   Contact Information           │
 │  Address:                     📞 Phone: +1 (209) 353-3619   │
-│  1344 White Ct                📧 Email: info@certifiedfreightlogistic.com    │
+│  1344 White Ct                📧 Email: info@sevenseaslogistic.com    │
 │  Santa Maria, CA 93458        🌐 Website: www.certifiedfreightlogistic.com    │
 │  License: DOT #123456789                                    │
 ├─────────────────────────────────────────────────────────────┤
