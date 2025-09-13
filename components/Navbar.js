@@ -40,10 +40,11 @@ export default function Navbar() {
             </div>            <div className="flex items-center space-x-2 flex-shrink-0">
               <Mail className="w-4 h-4" />
               <span className="whitespace-nowrap">info@certifiedfreightlogistic.com</span>
-            </div><div className="flex items-center space-x-2 flex-shrink-0 hidden 2xl:flex">
+            </div>
+            {/* <div className="flex items-center space-x-2 flex-shrink-0 hidden 2xl:flex">
               <MapPin className="w-4 h-4" />
               <span className="whitespace-nowrap">1344 White Ct, Santa Maria, CA 93458</span>
-            </div>
+            </div> */}
           </div>
           <div className="flex items-center space-x-2 flex-shrink-0">
             <Clock className="w-4 h-4" />
