@@ -8,6 +8,8 @@ import BlogInsights from '@/components/Home/BlogInsights';
 import FeatureCards from '@/components/Home/features-cards';
 import Process from '@/components/Home/proccess';
 import DirtBikeTransport from '@/components/Home/DirtBikeTransport';
+import PopularDestinations from '@/components/Home/PopularDestinations';
+import RegionalWebsites from '@/components/Home/RegionalWebsites';
 
 export default function Home() {
   return (
@@ -21,6 +23,8 @@ export default function Home() {
       {/* <FeatureCards /> */}
       {/* <TServices /> */}
       <Testimonial />
+      <PopularDestinations />
+      <RegionalWebsites />
     </main>
   );
 }

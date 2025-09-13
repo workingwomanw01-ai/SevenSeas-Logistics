@@ -60,6 +60,10 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "script-src 'none'; frame-src 'none'; sandbox;",
+    domains: [
+      "flagcdn.com",
+    ],
+    unoptimized: true,
   },
 };
 
