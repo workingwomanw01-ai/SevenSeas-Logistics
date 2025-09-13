@@ -182,7 +182,7 @@ export default function Footer() {
                   <Mail className="w-5 h-5 text-gold-secondary flex-shrink-0" />
                   <div>
                     <p className="text-gray-300">info@sevenseaslogistic.com</p>
-                    <p className="text-gray-300">support@certifiedfreightlogistic.com</p>
+                    <p className="text-gray-300">info@sevenseaslogistic.com</p>
                   </div>
                 </div>
 
