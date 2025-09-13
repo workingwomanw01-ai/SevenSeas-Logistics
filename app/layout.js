@@ -1,8 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { ShipmentProvider } from "@/contexts/ShipmentContext";
+import AppLayout from "./AppLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +20,7 @@ export const metadata = {
   openGraph: {
     title: "SevenSeas Logistics - Professional Shipping & Transport Solutions",
     description: "SevenSeas Logistics: 96+ years of experience providing reliable freight and transport solutions globally.",
-    url: "https://sevenseaslogistic.com/", // Update if you have a new domain
+    url: "https://sevenseaslogistic.com/",
     siteName: "SevenSeas Logistics",
     type: "website",
     locale: "en_US",
@@ -37,7 +36,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@sevenseaslogistics", // Update if you have a new handle
+    site: "@sevenseaslogistics",
     title: "SevenSeas Logistics - Professional Shipping & Transport Solutions", 
     description: "SevenSeas Logistics: 96+ years of reliable freight experience.",
     images: ["https://sevenseaslogistic.com/images/cel1.png"],
@@ -52,15 +51,11 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ShipmentProvider>
-          <Navbar />
-          <main className="pt-20 lg:pt-24">
+          <AppLayout>
             {children}
-          </main>
-          <Footer />
+          </AppLayout>
         </ShipmentProvider>
       </body>
     </html>
