@@ -18,8 +18,8 @@ export default function Home() {
       <DirtBikeTransport />
       <BlogInsights />
       <Process />
-      <FeatureCards />
-      <TServices />
+      {/* <FeatureCards /> */}
+      {/* <TServices /> */}
       <Testimonial />
     </main>
   );

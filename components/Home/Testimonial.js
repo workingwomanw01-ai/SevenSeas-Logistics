@@ -1,163 +1,632 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
-import Image from "next/image"
-import { ChevronLeft, ChevronRight, Zap } from "lucide-react"
+import { useState, useEffect } from "react"
 
 const testimonials = [
-  {
-    id: 1,
-    quote:
-      "I recently used for my logistics needs, and I am thoroughly impressed with their exceptional service. I contacted them, team demonstrated and making the entire process smooth and hassle-free.",
-    name: "Winifred P. Reyes",
-    title: "Freight Manager",
-    image: "https://www.bilevi.com/cdn/shop/articles/dressing-for-success-a-guide-to-office-attire-for-women-607338.jpg?v=1691239553&width=2048",
-  },
-  {
-    id: 2,
-    quote:
-      "Outstanding service and reliability. Their team went above and beyond to ensure our shipments arrived on time. Highly recommend their transport services for any business needs.",
-    name: "Marcus Johnson",
-    title: "Supply Chain Director",
-    image: "/images/marc.jpg",
-  },
-  {
-    id: 3,
-    quote:
-      "Professional, efficient, and cost-effective. They have transformed our logistics operations and helped us reduce costs while improving delivery times significantly.",
-    name: "Sarah Chen",
-    title: "Operations Manager",
-    image: "https://i.insider.com/62968df03050690018311acc?width=700",
-  },
+	{
+		heading: "Smooth Move!",
+		text: "Seven Seas made my move so easy and stress-free. Highly recommended!",
+		author: "Sarah L.",
+		date: "2 days ago",
+	},
+	{
+		heading: "Fast & Reliable",
+		text: "Excellent customer service and fast delivery. Will use again!",
+		author: "James T.",
+		date: "5 days ago",
+	},
+	{
+		heading: "Great Value",
+		text: "Affordable rates and my items arrived safely. Thank you!",
+		author: "Priya S.",
+		date: "1 week ago",
+	},
+	{
+		heading: "Always Informed",
+		text: "The tracking updates kept me informed every step of the way. Great experience!",
+		author: "Carlos M.",
+		date: "2 weeks ago",
+	},
+	{
+		heading: "Professional Team",
+		text: "The staff was courteous and handled my belongings with care.",
+		author: "Linda W.",
+		date: "3 weeks ago",
+	},
+	{
+		heading: "Highly Recommend",
+		text: "I recommend Seven Seas to all my friends and family. Top-notch service!",
+		author: "Ahmed K.",
+		date: "1 month ago",
+	},
+	{
+		heading: "Stress-Free Experience",
+		text: "Moving overseas was easy thanks to their support and updates.",
+		author: "Maria G.",
+		date: "1 month ago",
+	},
+	{
+		heading: "Impressive Service",
+		text: "Everything arrived on time and in perfect condition. Thank you!",
+		author: "Tom R.",
+		date: "2 months ago",
+	},
 ]
 
+const MAX_DESKTOP = 4
+
 export default function Testimonial() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef(null)
+	const [isMobile, setIsMobile] = useState(false)
+	const [current, setCurrent] = useState(0)
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold: 0.1 }
-    )
+	useEffect(() => {
+		const handleResize = () => setIsMobile(window.innerWidth < 768)
+		handleResize()
+		window.addEventListener("resize", handleResize)
+		return () => window.removeEventListener("resize", handleResize)
+	}, [])
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
+	const handlePrev = () => {
+		if (isMobile) {
+			setCurrent((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))
+		} else {
+			setCurrent((prev) =>
+				prev === 0
+					? Math.max(testimonials.length - MAX_DESKTOP, 0)
+					: prev - 1
+			)
+		}
+	}
+	const handleNext = () => {
+		if (isMobile) {
+			setCurrent((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))
+		} else {
+			setCurrent((prev) =>
+				prev >= testimonials.length - MAX_DESKTOP
+					? 0
+					: prev + 1
+			)
+		}
+	}
 
-    return () => observer.disconnect()
-  }, [])
+	// For desktop, show up to 4 at a time, sliding by 1
+	const getDesktopTestimonials = () => {
+		let start = current
+		let end = start + MAX_DESKTOP
+		if (end > testimonials.length) {
+			// Wrap around
+			const firstPart = testimonials.slice(start)
+			const secondPart = testimonials.slice(0, end - testimonials.length)
+			return [...firstPart, ...secondPart]
+		}
+		return testimonials.slice(start, end)
+	}
 
-  const nextTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
-  }
-
-  const prevTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length)
-  }
-
-  const currentTestimonial = testimonials[currentIndex]
-
-  return (
-    <div ref={sectionRef} className="w-full max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
-      <div className={`bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-1200 ${isVisible ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-90 rotate-1'}`} style={{transitionDelay: isVisible ? '0.2s' : '0s'}}>        <div className="flex flex-col lg:flex-row min-h-[500px]">
-          {/* Image Section */}
-          <div className="relative lg:w-2/5 bg-gradient-to-br from-orange-400 to-yellow-500">
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-400/90 to-yellow-500/90"></div>
-            <div className="relative h-64 lg:h-full flex items-center justify-center p-8">
-              <div className={`relative w-48 h-48 lg:w-64 lg:h-64 transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`} style={{transitionDelay: isVisible ? '0.4s' : '0s'}}>
-                <Image
-                  src={currentTestimonial.image || "/placeholder.svg"}
-                  alt={currentTestimonial.name}
-                  fill
-                  className="object-cover rounded-full border-4 border-white shadow-xl"
-                  priority
-                />
-              </div>
+	return (
+		<div className="wide-col col-xs-12">
+			<style>
+                {`
+                @media (max-width: 767px) {
+                    .ss-testimonial-heading {
+                        font-size: 18px !important;
+                    }
+                    .ss-testimonial-main {
+                        font-size: 24px !important;
+                    }
+                    .ss-testimonial-info {
+                        align-items: center !important;
+                        text-align: center !important;
+                        margin-left: 0 !important;
+                        padding-left: 0 !important;
+                    }
+                }
+                @media (min-width: 768px) {
+                    .ss-testimonial-info {
+                        align-items: center !important;
+                        text-align: center !important;
+                        margin-left: 200px !important; /* <-- push right on desktop */
+                        padding-left: 0 !important;
+                    }
+                }
+                .ss-arrow-btn {
+                    background: #fff !important;
+                    border: none;
+                    border-radius: 50%;
+                    width: 26px;
+                    height: 26px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: background 0.2s, border-color 0.2s;
+                    box-shadow: 0 2px 8px rgba(229,57,53,0.10);
+                    border: 2px solid #b71c1c;
+                    padding: 0;
+                }
+                .ss-arrow-btn svg {
+                    display: block;
+                    width: 13px;
+                    height: 13px;
+                }
+                .ss-arrow-btn:active {
+                    background: #ffeaea !important;
+                }
+                .ss-arrow-btn .ss-arrow-icon {
+                    fill: #b71c1c;
+                }
+                .ss-arrow-btn.disabled,
+                .ss-arrow-btn:disabled {
+                    border-color: #ccc !important;
+                    background: #f5f5f5 !important;
+                    cursor: not-allowed !important;
+                }
+                .ss-arrow-btn.disabled .ss-arrow-icon,
+                .ss-arrow-btn:disabled .ss-arrow-icon {
+                    fill: #ccc !important;
+                }
+                `}
+            </style>
+            {/* Small space above testimonials */}
+            <div style={{ height: 24 }} />
+            <div className="container">
+                {/* ROW - OVERVIEW */}
+                <div className="row overview" style={{ justifyContent: "center" }}>
+                    <div
+                        className="info col-xs-12 ss-testimonial-info"
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            width: "100%",
+                        }}
+                    >
+                        <p
+                            className="secondary-heading ss-testimonial-heading"
+                            style={{
+                                color: "#b71c1c", // burgundy-dark
+                                fontSize: 28,
+                                fontWeight: 700,
+                                marginBottom: 2,
+                            }}
+                        >
+                            Don't take our word for it
+                        </p>
+                        <h4
+                            className="heading main ss-testimonial-main"
+                            style={{
+                                color: "#C9A96E", // gold-dark
+                                fontSize: 36,
+                                fontWeight: 800,
+                                marginBottom: 32,
+                            }}
+                        >
+                            Our customers love us!
+                        </h4>
+                    </div>
+                </div>
+                {/*// ROW - OVERVIEW */}
             </div>
-
-            {/* Feedback Badge */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 lg:top-auto lg:bottom-8 lg:translate-y-0">
-              <div className={`bg-gold-secondary text-white px-4 py-8 lg:px-6 lg:py-12 rounded-r-2xl shadow-lg transition-all duration-800 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`} style={{transitionDelay: isVisible ? '0.6s' : '0s'}}>
-                <div className="flex flex-col items-center space-y-2">
-                  <Zap className="w-6 h-6 lg:w-8 lg:h-8" />
-                  <span className="text-sm lg:text-base font-semibold tracking-wider transform -rotate-90 lg:rotate-0 whitespace-nowrap">
-                    Feedback
-                  </span>
-                </div>
-              </div>
+            <div
+				className="spc codeblock"
+				data-os-animation="fadeIn"
+				data-os-animation-delay="0s"
+			>
+				{isMobile ? (
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+							position: "relative",
+							width: "100%",
+							maxWidth: 340,
+							margin: "0 auto 16px auto",
+						}}
+					>
+						<button
+							onClick={handlePrev}
+							aria-label="Previous"
+							className={`ss-arrow-btn${(current === 0) ? " disabled" : ""}`}
+							style={{
+								position: "absolute",
+								left: -16,
+								top: "50%",
+								transform: "translateY(-50%)",
+								zIndex: 2,
+							}}
+							disabled={current === 0}
+						>
+							<svg viewBox="0 0 24 24" className="ss-arrow-icon">
+                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                            </svg>
+						</button>
+						<div
+							style={{
+								background: "#fff",
+								borderRadius: "0px",
+								boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
+								padding: "20px",
+								maxWidth: "320px",
+								width: "100%",
+								minHeight: "140px",
+								textAlign: "left",
+								margin: "0 24px",
+							}}
+						>
+							{/* Stars and tick row */}
+							<div
+								style={{
+									display: "flex",
+									alignItems: "center",
+									marginBottom: 8,
+								}}
+							>
+								<div
+									style={{
+										display: "flex",
+										gap: "2px",
+										marginRight: 8,
+									}}
+								>
+									{[...Array(5)].map((_, i) => (
+										<span
+											key={i}
+											style={{
+												display: "inline-flex",
+												alignItems: "center",
+												justifyContent: "center",
+												background: "#00B67A",
+												borderRadius: "0px",
+												width: 22,
+												height: 22,
+											}}
+										>
+											<svg
+												width="16"
+												height="16"
+												viewBox="0 0 20 20"
+												fill="white"
+												xmlns="http://www.w3.org/2000/svg"
+												style={{ display: "inline-block" }}
+											>
+												<polygon
+													points="10,1.5 12.59,7.36 18.9,7.64 13.95,11.97 15.54,18.09 10,14.5 4.46,18.09 6.05,11.97 1.1,7.64 7.41,7.36"
+													fill="white"
+													stroke="white"
+													strokeWidth="1"
+												/>
+											</svg>
+										</span>
+									))}
+								</div>
+								<span
+									style={{
+										display: "inline-flex",
+										alignItems: "center",
+										justifyContent: "center",
+										background: "#bdbdbd",
+										borderRadius: "50%",
+										width: 14,
+										height: 14,
+										marginRight: 6,
+									}}
+								>
+									<svg
+										width="16"
+										height="16"
+										viewBox="0 0 16 16"
+										fill="none"
+									>
+										<circle cx="8" cy="8" r="8" fill="none" />
+										<path
+											d="M4 8.5L7 11.5L12 6.5"
+											stroke="#fff"
+											strokeWidth="3"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+									</svg>
+								</span>
+								<span
+									style={{
+										color: "#757575",
+										fontWeight: 500,
+										fontSize: 14,
+									}}
+								>
+									Invited
+								</span>
+							</div>
+							<div
+								style={{
+									fontWeight: "bold",
+									fontSize: 18,
+									marginBottom: 6,
+								}}
+							>
+								{testimonials[current].heading}
+							</div>
+							<div style={{ marginBottom: 10 }}>
+								{testimonials[current].text}
+							</div>
+							<div style={{ color: "#757575", fontSize: 14 }}>
+								– {testimonials[current].author}{" "}
+								<span style={{ marginLeft: 8 }}>
+									{testimonials[current].date}
+								</span>
+							</div>
+						</div>
+						<button
+							onClick={handleNext}
+							aria-label="Next"
+							className={`ss-arrow-btn${(isMobile ? current === testimonials.length - 1 : current >= testimonials.length - MAX_DESKTOP) ? " disabled" : ""}`}
+							style={{
+								position: "absolute",
+								right: -16,
+								top: "50%",
+								transform: "translateY(-50%)",
+								zIndex: 2,
+							}}
+							disabled={isMobile ? current === testimonials.length - 1 : current >= testimonials.length - MAX_DESKTOP}
+						>
+							<svg viewBox="0 0 24 24" className="ss-arrow-icon">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+                            </svg>
+                        </button>
+					</div>
+				) : (
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+							position: "relative",
+							width: "100%",
+							maxWidth: 1400,
+							margin: "0 auto 16px auto",
+						}}
+					>
+						<button
+							onClick={handlePrev}
+							aria-label="Previous"
+							className="ss-arrow-btn"
+							style={{
+								position: "absolute",
+								left: -20,
+								top: "50%",
+								transform: "translateY(-50%)",
+								zIndex: 2,
+							}}
+						>
+							<svg viewBox="0 0 24 24" className="ss-arrow-icon">
+                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                            </svg>
+						</button>
+						<div
+							style={{
+								display: "flex",
+								gap: "24px",
+								width: "100%",
+								justifyContent: "center",
+								maxWidth: 1340, // set a max width for the row
+								margin: "0 auto", // center the row in its parent
+							}}
+						>
+							{getDesktopTestimonials().map((t, idx) => (
+								<div
+									key={idx}
+									style={{
+										background: "#fff",
+										borderRadius: "0px",
+										boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
+										padding: "20px",
+										maxWidth: "320px",
+										width: "100%",
+										minHeight: "140px",
+										textAlign: "left",
+										marginLeft: 0,
+										flex: "1 1 260px",
+									}}
+								>
+									{/* Stars and tick row */}
+									<div
+										style={{
+											display: "flex",
+											alignItems: "center",
+											marginBottom: 8,
+										}}
+									>
+										<div
+											style={{
+												display: "flex",
+												gap: "2px",
+												marginRight: 8,
+											}}
+										>
+											{[...Array(5)].map((_, i) => (
+												<span
+													key={i}
+													style={{
+														display: "inline-flex",
+														alignItems: "center",
+														justifyContent: "center",
+														background: "#00B67A",
+														borderRadius: "0px",
+														width: 22,
+														height: 22,
+													}}
+												>
+													<svg
+														width="16"
+														height="16"
+														viewBox="0 0 20 20"
+														fill="white"
+														xmlns="http://www.w3.org/2000/svg"
+														style={{ display: "inline-block" }}
+													>
+														<polygon
+															points="10,1.5 12.59,7.36 18.9,7.64 13.95,11.97 15.54,18.09 10,14.5 4.46,18.09 6.05,11.97 1.1,7.64 7.41,7.36"
+															fill="white"
+															stroke="white"
+															strokeWidth="1"
+														/>
+													</svg>
+												</span>
+											))}
+										</div>
+										<span
+											style={{
+												display: "inline-flex",
+												alignItems: "center",
+												justifyContent: "center",
+												background: "#bdbdbd",
+												borderRadius: "50%",
+												width: 14,
+												height: 14,
+												marginRight: 6,
+											}}
+										>
+											<svg
+												width="16"
+												height="16"
+												viewBox="0 0 16 16"
+												fill="none"
+											>
+												<circle cx="8" cy="8" r="8" fill="none" />
+												<path
+													d="M4 8.5L7 11.5L12 6.5"
+													stroke="#fff"
+													strokeWidth="3"
+													strokeLinecap="round"
+													strokeLinejoin="round"
+												/>
+											</svg>
+										</span>
+										<span
+											style={{
+												color: "#757575",
+												fontWeight: 500,
+												fontSize: 14,
+											}}
+										>
+											Invited
+										</span>
+									</div>
+									<div
+										style={{
+											fontWeight: "bold",
+											fontSize: 18,
+											marginBottom: 6,
+										}}
+									>
+										{t.heading}
+									</div>
+									<div style={{ marginBottom: 10 }}>{t.text}</div>
+									<div style={{ color: "#757575", fontSize: 14 }}>
+										– {t.author}{" "}
+										<span style={{ marginLeft: 8 }}>{t.date}</span>
+									</div>
+								</div>
+							))}
+						</div>
+						<button
+							onClick={handleNext}
+							aria-label="Next"
+							className="ss-arrow-btn"
+							style={{
+								position: "absolute",
+								right: -20,
+								top: "50%",
+								transform: "translateY(-50%)",
+								zIndex: 2,
+							}}
+						>
+							<svg viewBox="0 0 24 24" className="ss-arrow-icon">
+                                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+                            </svg>
+                        </button>
+                    </div>
+                )}
             </div>
-          </div>
-
-          {/* Content Section */}
-          <div className="lg:w-3/5 p-8 lg:p-12 flex flex-col justify-center">
-            <div className="space-y-6">
-              {/* Header */}
-              <div className="space-y-2">
-                <div className={`flex items-center space-x-2 text-gold-secondary transition-all duration-700 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`} style={{transitionDelay: isVisible ? '0.8s' : '0s'}}>
-                  <Zap className="w-4 h-4" />
-                  <span className="text-sm font-semibold tracking-wider uppercase">Trusted Transport Service</span>
+            {/* Trustpilot rating below the review cards in desktop view */}
+            {!isMobile && (
+                <div
+                    style={{
+                        textAlign: "center",
+                        fontSize: 13,
+                        color: "#757575",
+                        marginTop: 8,
+                        marginBottom: 16,
+                        lineHeight: 1.6,
+                    }}
+                >
+                    Rated <span style={{ fontWeight: 700, color: "#222" }}>4.5/5</span> based on 9,633 reviews. Showing our 5 star reviews.
+                    <br />
+                    <span style={{ fontWeight: 700, color: "#222" }}>Trustpilot</span>
+                    <svg width="16" height="16" viewBox="0 0 20 20" style={{ display: "inline-block", marginLeft: 4, verticalAlign: "middle" }}>
+                        <polygon
+                            points="10,1.5 12.59,7.36 18.9,7.64 13.95,11.97 15.54,18.09 10,14.5 4.46,18.09 6.05,11.97 1.1,7.64 7.41,7.36"
+                            fill="#00B67A"
+                            stroke="#00B67A"
+                            strokeWidth="1"
+                        />
+                    </svg>
                 </div>
-                <h2 className={`text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight transition-all duration-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`} style={{transitionDelay: isVisible ? '1.0s' : '0s'}}>
-                  What Our Client's Says
-                </h2>
-              </div>
-
-              {/* Testimonial Quote */}
-              <div className="space-y-6">
-                <blockquote className={`text-gray-700 text-lg lg:text-xl leading-relaxed transition-all duration-800 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}`} style={{transitionDelay: isVisible ? '1.2s' : '0s'}}>
-                  "{currentTestimonial.quote}"
-                </blockquote>
-
-                {/* Client Info */}
-                <div className={`space-y-1 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`} style={{transitionDelay: isVisible ? '1.4s' : '0s'}}>
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900">{currentTestimonial.name}</h3>
-                  <p className="text-gray-600 font-medium">{currentTestimonial.title}</p>
+            )}
+			{/* Add Trustpilot rating below the review card */}
+            {isMobile ? (
+                <div
+                    style={{
+                        textAlign: "center",
+                        fontSize: 13,
+                        color: "#757575",
+                        marginTop: 8,
+                        marginBottom: 16,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "100%",
+                        maxWidth: 340,
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                    }}
+                >
+                    <span style={{ display: "block", width: "100%" }}>
+                        Rated <span style={{ fontWeight: 700, color: "#222" }}>4.5/5</span> based on 9,633 reviews.
+                    </span>
+                    <span style={{ display: "block", width: "100%" }}>
+                        Showing our 5 star reviews.
+                    </span>
+                    <span style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 2, justifyContent: "center", width: "100%" }}>
+                        <span style={{ fontWeight: 700, color: "#222" }}>Trustpilot</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" style={{ display: "inline-block" }}>
+                            <polygon
+                                points="10,1.5 12.59,7.36 18.9,7.64 13.95,11.97 15.54,18.09 10,14.5 4.46,18.09 6.05,11.97 1.1,7.64 7.41,7.36"
+                                fill="#00B67A"
+                                stroke="#00B67A"
+                                strokeWidth="1"
+                            />
+                        </svg>
+                    </span>
                 </div>
-              </div>
-
-              {/* Navigation */}
-              <div className={`flex items-center justify-between pt-6 transition-all duration-600 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`} style={{transitionDelay: isVisible ? '1.6s' : '0s'}}>
-                <div className="flex space-x-2">
-                  {testimonials.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentIndex(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        index === currentIndex ? "bg-gold-secondary w-8" : "bg-gray-300 hover:bg-gray-400"
-                      }`}
-                      aria-label={`Go to testimonial ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <div className="flex space-x-2">
-                  <button
-                    onClick={prevTestimonial}
-                    className="p-3 rounded-full border-2 border-gray-300 hover:border-gold-secondary hover:bg-cream-accent transition-all duration-300 group"
-                    aria-label="Previous testimonial"
-                  >
-                    <ChevronLeft className="w-5 h-5 text-gray-600 group-hover:text-gold-secondary" />
-                  </button>
-                  <button
-                    onClick={nextTestimonial}
-                    className="p-3 rounded-full border-2 border-gray-300 hover:border-gold-secondary hover:bg-cream-accent transition-all duration-300 group"
-                    aria-label="Next testimonial"
-                  >
-                    <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-gold-secondary" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+            ) : null}
+			<div className="container">
+				{/* ROW - OVERVIEW */}
+				{/* <div className="row outro text-left">
+					<div className="info col-xs-12">
+						<div className="text base-text">
+							<p>
+								<span id="shipping">
+									Ready to ship with confidence? Join thousands of happy
+									customers today!
+								</span>
+							</p>
+						</div>
+					</div>
+				</div> */}
+				{/*// ROW - OVERVIEW */}
+			</div>
+		</div>
+	)
 }
