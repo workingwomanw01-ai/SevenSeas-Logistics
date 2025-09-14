@@ -25,15 +25,15 @@ const createTrackingUrl = (trackingNumber) => {
   return `${baseUrl}/tracking?trackingNumber=${encodeURIComponent(trackingNumber)}`;
 };
 
-// Create transporter using Titan Mail SMTP with anti-spam configurations
+// Create transporter using Hostinger SMTP
 const createTransporter = () => {
   return nodemailer.createTransport({
-    host: 'smtp.zoho.com',
-    port: 465, // or 587 for TLS
+    host: 'smtp.hostinger.com',
+    port: 465, // Use 465 for SSL, or 587 for TLS (set secure: false for 587)
     secure: true, // true for port 465, false for 587
     auth: {
-      user: process.env.EMAIL_USER, // your Zoho email address
-      pass: process.env.EMAIL_PASSWORD // your Zoho app password
+      user: process.env.EMAIL_USER, // your Hostinger email address
+      pass: process.env.EMAIL_PASSWORD // your Hostinger email password
     }
   });
 };
