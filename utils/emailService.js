@@ -13,7 +13,7 @@ const getBaseUrl = () => {
   }
     // Default to common production domain patterns or localhost for development
   if (process.env.NODE_ENV === 'production') {
-    return process.env.WEBSITE_URL || 'https://www.certifiedfreightlogistic.com';
+    return process.env.WEBSITE_URL || 'https://www.sevenseaslogistic.com';
   }
   
   return 'http://localhost:3000';

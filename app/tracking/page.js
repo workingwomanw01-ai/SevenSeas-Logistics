@@ -929,7 +929,7 @@ function TrackingPageContent() {
                     {[
                       { label: "Origin", value: shipmentData.origin, highlight: true },
                       { label: "Destination", value: shipmentData.destination, highlight: true },
-                      { label: "Package Type", value: shipmentData.packages },
+                      { label: "Package Type", value: shipmentData.productType || shipmentData.packages || 'N/A' },
                       { label: "Carrier", value: shipmentData.carrier },
                       { label: "Shipment Type", value: shipmentData.shipmentType },
                       { label: "Weight", value: shipmentData.weight },
@@ -1925,4 +1925,3 @@ function TrackingPageContent() {
     </div>
   )
 }
-           

@@ -82,6 +82,7 @@ export async function POST(request) {
       // Shipment details
       shipmentType: body.shipmentType || '',
       product: body.product || '',
+      productType: body.productType || '',
       productQuantity: extractNumber(body.productQuantity),
       productWeight: extractNumber(body.productWeight),
       weight: extractNumber(body.weight),
@@ -90,6 +91,19 @@ export async function POST(request) {
       // Additional info
       comments: body.comments || '',
       featuredImage: body.featuredImage || '',
+      courier: body.courier || '',
+      totalFreight: body.totalFreight || '',
+      carrier: body.carrier || '',
+      carrierReferenceNo: body.carrierReferenceNo || '',
+      departureTime: body.departureTime || '',
+      pickupDate: body.pickupDate || '',
+      pickupTime: body.pickupTime || '',
+      estimatedDeliveryDate: body.estimatedDeliveryDate || '',
+      length: body.length || '',
+      width: body.width || '',
+      height: body.height || '',
+      paymentMethod: body.paymentMethod || '',
+      description: body.description || '',
       
       // Timestamps
       createdAt: customTimestamp,
@@ -108,7 +122,10 @@ export async function POST(request) {
           updatedBy: 'system',
           timezone: body.timezone || 'UTC'
         }
-      ]
+      ],
+      
+      // Mode
+      mode: body.mode || '',
     };
 
     console.log('Attempting to save shipment data...'); // Debug log

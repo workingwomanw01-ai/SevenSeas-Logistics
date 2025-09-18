@@ -33,7 +33,7 @@ export default function Admin() {
     }
   };
 
-  const handleFormSubmit = async () => {
+  const handleFormSubmit = async (latestData) => {
     setLoading(true);
     setError(null);
 
@@ -42,36 +42,40 @@ export default function Admin() {
       'receiver', 'receiverEmail', 'receiverNumber', 'receiverAddress',
       'origin', 'destination'
     ];
-    
-    console.log('Form data being validated:', formData);
-    
+
+    const dataToValidate = latestData || formData;
+    console.log('Form data being validated:', dataToValidate);
+
     const missingFields = requiredFields.filter(field => {
-      const value = formData[field];
+      const value = dataToValidate[field];
       return !value || value.trim() === '';
     });
-    
+
     if (missingFields.length > 0) {
       const fieldNames = missingFields.map(field => field.replace(/([A-Z])/g, ' $1').toLowerCase());
       showNotification('error', `Please fill in: ${fieldNames.join(', ')}`);
       setLoading(false);
       return;
-    }    try {
+    }
+    try {
       const shipmentData = {
-        ...formData,
-        status: formData.status || "Pending",
+        ...dataToValidate,
+        status: dataToValidate.status || "Pending",
         createdAt: new Date().toISOString(),
-        latitude: formData.latitude ? parseFloat(formData.latitude) : null,
-        longitude: formData.longitude ? parseFloat(formData.longitude) : null,
-        originLatitude: formData.originLatitude ? parseFloat(formData.originLatitude) : null,
-        originLongitude: formData.originLongitude ? parseFloat(formData.originLongitude) : null,
-        destinationLatitude: formData.destinationLatitude ? parseFloat(formData.destinationLatitude) : null,
-        destinationLongitude: formData.destinationLongitude ? parseFloat(formData.destinationLongitude) : null,
-        currentLocationPercentage: formData.currentLocationPercentage ? parseFloat(formData.currentLocationPercentage) : 0,
-        quantity: formData.quantity ? parseInt(formData.quantity) : 0,
-        productQuantity: formData.productQuantity ? parseInt(formData.productQuantity) : 0,
-        weight: formData.weight || "0",
-        productWeight: formData.productWeight || "0",
+        latitude: dataToValidate.latitude ? parseFloat(dataToValidate.latitude) : null,
+        longitude: dataToValidate.longitude ? parseFloat(dataToValidate.longitude) : null,
+        originLatitude: dataToValidate.originLatitude ? parseFloat(dataToValidate.originLatitude) : null,
+        originLongitude: dataToValidate.originLongitude ? parseFloat(dataToValidate.originLongitude) : null,
+        destinationLatitude: dataToValidate.destinationLatitude ? parseFloat(dataToValidate.destinationLatitude) : null,
+        destinationLongitude: dataToValidate.destinationLongitude ? parseFloat(dataToValidate.destinationLongitude) : null,
+        currentLocationPercentage: dataToValidate.currentLocationPercentage ? parseFloat(dataToValidate.currentLocationPercentage) : 0,
+        quantity: dataToValidate.quantity ? parseInt(dataToValidate.quantity) : 0,
+        productQuantity: dataToValidate.productQuantity ? parseInt(dataToValidate.productQuantity) : 0,
+        weight: dataToValidate.weight || "0",
+        productWeight: dataToValidate.productWeight || "0",
+        // Add any other fields you want to send!
       };
+      console.log("Sending shipmentData:", shipmentData);
 
       const res = await fetch("/api/createShipment", {
         method: "POST",
@@ -130,7 +134,7 @@ export default function Admin() {
           <h1>Create shipment</h1>
           <ShipmentForm
             initialData={formData}
-            onSubmit={handleFormSubmit} 
+            onSubmit={handleFormSubmit} // This will now receive the latest form data
             onChange={handleFormChange}
             buttonText="Create Shipment"
             loading={loading}
